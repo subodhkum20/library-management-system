@@ -32,7 +32,11 @@ public:
             getline(currUser, line);
             getline(currUser, line);
             getline(currUser, line);
-            cout << line << endl;
+            stringstream ss(line);
+            bookDatabase newBook;
+            while(getline(ss, line,',')){
+                newBook.Search(line);
+            }
         }
         currUser.close();
     }
@@ -124,7 +128,11 @@ public:
             getline(currUser, line);
             getline(currUser, line);
             getline(currUser, line);
-            cout << line << endl;
+            stringstream ss(line);
+            bookDatabase newBook;
+            while(getline(ss, line)){
+                newBook.Search(line);
+            }
         }
         currUser.close();
     }

@@ -121,10 +121,8 @@ public:
             cout << "book has been deleted" << endl;
         }
     }
-    void Search()
+    void Search( string bookISBN)
     {
-        cout << "enter the ISBN number of the book" << endl;
-        string bookISBN;
         fstream bookFile;
         bookFile.open("bookFile.txt");
         if (bookFile.is_open())
@@ -134,8 +132,8 @@ public:
             {
                 string author, publication, ISBN, IssuedTo,dateIssued;
                 getline(bookFile, author);
-                getline(bookFile, publication);
                 getline(bookFile, ISBN);
+                getline(bookFile, publication);
                 getline(bookFile, IssuedTo);
                 getline(bookFile, dateIssued);
                 if (ISBN == bookISBN)
