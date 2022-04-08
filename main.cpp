@@ -56,7 +56,7 @@ int main()
                     {
                         int libRes;
                         cout << "press 0 to add/delete/update user" << endl
-                             << "press 1 to add/update/delete/unissue book" << endl
+                             << "press 1 to add/update/delete/unissue/issue book" << endl
                              << "press 2 to get the list of all books" << endl
                              << "press 3 to get the list of all users" << endl
                              << "press 4 to get the list of books issued to a user" << endl
@@ -98,10 +98,13 @@ int main()
                                 cout << "Enter the id of the user to be updated" << endl;
                                 getchar();
                                 getline(cin, updateUser.id);
-                                cout << "Enter the role of the user to be updated" << endl;
+                                cout << "Enter the new username of the user" << endl;
+                                getline(cin, updateUser.username);
+                                cout << "Enter the new passord of the user" << endl;
+                                getline(cin, updateUser.password);
+                                cout << "Enter the new role of the user" << endl;
                                 getline(cin, updateUser.role);
-                                cout << "Enter ISBN of any new book if issued to the user else press 0" << endl;
-                                getline(cin, updateUser.books);
+                                
                                 users.update(updateUser);
                             }
                         }
@@ -110,7 +113,8 @@ int main()
                             cout << "press 0 to add a book" << endl
                                  << "press 1 to delete a book" << endl
                                  << "press 2 to update a book" << endl
-                                 << "press 3 to unissue a book" << endl;
+                                 << "press 3 to unissue a book" << endl
+                                 << "press 4 to issue a book" << endl;
                             cin >> libRes;
                             if (libRes == 0)
                             {
@@ -145,6 +149,10 @@ int main()
                             }
                             else if(libRes==3){
                                 books.unissue();
+                            }
+                            else if(libRes==4){
+                                book newbook;
+                                newbook.bookRequest();
                             }
                         }
                         else if (libRes == 2)

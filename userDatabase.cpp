@@ -52,105 +52,12 @@ public:
                 else
                 {
                     exists = true;
-                    newFile << username << endl;
-                    newFile << password << endl;
+                    newFile << toUpdate.username << endl;
+                    newFile << toUpdate.password << endl;
                     newFile << toUpdate.role << endl;
                     newFile << id << endl;
-                    if (toUpdate.books != "0")
-                    {
-                        fstream issueBook, newBook;
-                        issueBook.open("bookFile.txt", ios::in);
-                        newBook.open("bookFile2.txt", ios::out);
-                        if (issueBook.is_open())
-                        {
-                            string line;
-                            int count = 0;
-                            while (getline(issueBook, line))
-                            {
-                                if ((count + 1) % 6 == 3)
-                                {
-                                    if (toUpdate.books == line)
-                                    {
-                                        newBook << line << endl;
-                                        getline(issueBook, line);
-                                        newBook << line << endl;
-                                        getline(issueBook, line);
-                                        if (line != "")
-                                        {
-                                            cout << "--------------------------------" << endl;
-                                            cout << "this book is already issued to someone" << endl;
-                                            cout << "--------------------------------" << endl;
-                                            newBook << line << endl;
-                                            flag = 0;
-                                            getline(issueBook, line);
-                                            newBook << line << endl;
-                                        }
-                                        else
-                                        {
-                                            newBook << toUpdate.id << endl;
-                                            time_t now = time(0);
-                                            tm *ltm = localtime(&now);
-                                            newBook << ltm->tm_mday << "/" << 1 + ltm->tm_mon << "/" << 1900 + ltm->tm_year << endl;
-                                            getline(issueBook, line);
-                                            getline(issueBook, line);
-                                        }
-                                    }
-                                    else
-                                    {
-                                        newBook << line << endl;
-                                        getline(issueBook, line);
-                                        newBook << line << endl;
-                                        getline(issueBook, line);
-                                        newBook << line << endl;
-                                        getline(issueBook, line);
-                                        newBook << line << endl;
-                                    }
-                                    count += 4;
-                                }
-                                else
-                                {
-                                    newBook << line << endl;
-                                    count++;
-                                }
-                            }
-                        }
-                        issueBook.close();
-                        newBook.close();
-                        remove("bookFile.txt");
-                        rename("bookFile2.txt", "bookFile.txt");
-                        if (books != "")
-                        {
-                            if (flag)
-                            {
-                                newFile << books << "," << toUpdate.books << endl;
-                                time_t now = time(0);
-                                tm *ltm = localtime(&now);
-                                newFile << dateIssued << "," << ltm->tm_mday << "/" << 1 + ltm->tm_mon << "/" << 1900 + ltm->tm_year << endl;
-                            }
-                            else
-                            {
-                                newFile << books << endl;
-                                newFile << dateIssued << endl;
-                            }
-                        }
-                        else
-                        {
-                            if (flag)
-                            {
-                                newFile << toUpdate.books << endl;
-                                time_t now = time(0);
-                                tm *ltm = localtime(&now);
-                                newFile << ltm->tm_mday << "/" << 1 + ltm->tm_mon << "/" << 1900 + ltm->tm_year << endl;
-                            }
-                            else
-                                newFile << books << endl;
-                        }
-                    }
-                    else
-                    {
-                        newFile << books << endl;
-                        newFile << dateIssued << endl;
-                    }
+                    newFile << books << endl;
+                    newFile << dateIssued << endl;
                 }
             }
             userFile.close();
@@ -314,7 +221,7 @@ public:
             int count = 0;
             while (getline(userFile, line))
             {
-                if (line == userId && (count + 1) % 5 == 4)
+                if (line == userId && (count + 1) % 6 == 4)
                 {
                     getline(userFile, line);
                     cout << "books issued to the user " << line << endl;

@@ -188,12 +188,10 @@ public:
         {
             while (getline(bookFile, line))
             {
-                if ((count + 1) % 5 == 3)
+                if ((count + 1) % 6 == 3)
                 {
                     if (bookISBN == line)
                     {
-                        newFile << line << endl;
-                        getline(bookFile, line);
                         newFile << line << endl;
                         getline(bookFile, line);
                         newFile << line << endl;
@@ -267,6 +265,8 @@ public:
                         unIssued.close();
                         remove("userFile.txt");
                         rename("userFile2.txt", "userFile.txt");
+                        newFile << endl;
+                        getline(bookFile,line);
                         newFile << endl;
                     }
                     else

@@ -64,7 +64,6 @@ public:
                 int j=0;
                 while(getline(arrDate, line, '/')){
                     temp.at(j)=stoi(line);
-                    cout<<temp.at(j)<<endl;
                     j++;
                 }
                 arrDates.push_back(temp);
